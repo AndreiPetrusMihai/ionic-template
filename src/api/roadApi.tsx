@@ -1,8 +1,5 @@
 import axiosClient from "../utils/axiosClient";
-import { getLogger } from "../core";
 import { RoadProps } from "../components/RoadProps";
-
-const log = getLogger("roadApi");
 
 const baseUrl = "localhost:4000";
 const roadUrl = `http://${baseUrl}/road`;
@@ -108,17 +105,13 @@ export const newWebSocket = (
 ) => {
   const ws = new WebSocket(`ws://${baseUrl}`);
   ws.onopen = () => {
-    log("web socket onopen");
     ws.send(JSON.stringify({ type: "authenticate", payload: authToken }));
   };
-  ws.onclose = () => {
-    log("web socket onclose");
-  };
+  ws.onclose = () => {};
   ws.onerror = (error) => {
-    log("web socket onerror", error);
+    console.log(error);
   };
   ws.onmessage = (messageEvent) => {
-    log("web socket onmessage");
     onMessage(JSON.parse(messageEvent.data));
   };
   return ws;

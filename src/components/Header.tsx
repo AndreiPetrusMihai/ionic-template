@@ -7,18 +7,15 @@ import {
   IonCol,
   CreateAnimation,
 } from "@ionic/react";
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { useRouteMatch } from "react-router";
-import { NetworkContext } from "../providers/networkProvider";
+import { NetworkContext } from "../providers/NetworkProviderr";
 
 interface Props {}
 
 const Header = (props: Props) => {
   const { networkStatus } = useContext(NetworkContext);
   const match = useRouteMatch(["/road/:id", "/road", "/roads", "/login"]);
-
-  const headerTextRef = React.createRef();
-  useEffect(() => {}, []);
 
   const getHeaderTitle = () => {
     switch (match?.path || "") {

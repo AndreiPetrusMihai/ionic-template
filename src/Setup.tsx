@@ -14,17 +14,17 @@ import { Route, Redirect, useRouteMatch } from "react-router";
 import { RoadList, RoadEdit } from "./components";
 import GuardedRoute from "./components/GuardedRoute";
 import Header from "./components/Header";
-import { AuthContext } from "./providers/authProvider";
-import { RoadProvider } from "./providers/roadProvider";
+import { AuthContext } from "./providers/AuthProvider";
+import { EntitiesProvider } from "./providers/EntitiesProvider";
 import Login from "./views/Login";
 
-interface Props {}
+type Props = {};
 
 const Setup = (props: Props) => {
   const { authToken, logout } = useContext(AuthContext);
   return (
     <IonReactRouter>
-      <RoadProvider>
+      <EntitiesProvider>
         <IonPage>
           <Header />
           <IonContent>
@@ -44,7 +44,7 @@ const Setup = (props: Props) => {
             )}
           </IonContent>
         </IonPage>
-      </RoadProvider>
+      </EntitiesProvider>
     </IonReactRouter>
   );
 };

@@ -3,7 +3,7 @@ import { useState } from "react";
 import axiosClient from "../utils/axiosClient";
 import { Plugins } from "@capacitor/core";
 import { AxiosResponse } from "axios";
-import { notifications } from "ionicons/icons";
+
 const { Storage } = Plugins;
 type AuthProviderProps = {};
 
@@ -11,19 +11,19 @@ type AuthState = {
   authToken: string | null;
   login?: (email: string, password: string) => void;
   logout?: () => void;
-  retrieveingToken: boolean;
+  retrievingToken: boolean;
 };
 
 const initialState: AuthState = {
   authToken: null,
-  retrieveingToken: true,
+  retrievingToken: true,
 };
 
 export const AuthContext = React.createContext<AuthState>(initialState);
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [authToken, setAuthToken] = useState<string | null>(null);
-  const [retrieveingToken, setRetrieveingToken] = useState(true);
+  const [retrievingToken, setRetrievingToken] = useState(true);
 
   const setLSToken = async (token: string) => {
     await Storage.set({
@@ -37,13 +37,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   };
 
   const getLSToken = async () => {
-    return await Storage.get({
+    return Storage.get({
       key: "authToken",
     });
   };
 
   useEffect(() => {
-    setRetrieveingToken(true);
+    setRetrievingToken(true);
     getLSToken().then((token) => {
       if (token.value) {
         axiosClient.interceptors.request.use((config) => {
@@ -52,12 +52,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         });
       }
       setAuthToken(token.value);
-      setRetrieveingToken(false);
+      setRetrievingToken(false);
     });
   }, []);
 
   const login = (email: string, password: string) => {
-    setRetrieveingToken(true);
+    setRetrievingToken(true);
     axiosClient
       .post("login", { email, password })
       .then((res: AxiosResponse<string>) => {
@@ -72,7 +72,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         console.log(err);
       })
       .finally(() => {
-        setRetrieveingToken(false);
+        setRetrievingToken(false);
       });
   };
 
@@ -85,7 +85,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     authToken,
     login,
     logout,
-    retrieveingToken,
+    retrievingToken,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

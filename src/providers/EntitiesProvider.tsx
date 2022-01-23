@@ -1,12 +1,5 @@
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useReducer,
-  useState,
-} from "react";
+import React, { useCallback, useContext, useEffect, useReducer } from "react";
 import PropTypes from "prop-types";
-import { getLogger } from "../core";
 import { RoadProps } from "../components/RoadProps";
 import {
   createRoad,
@@ -15,10 +8,8 @@ import {
   updateRoad,
   uploadLocalRoads,
 } from "../api/roadApi";
-import { AuthContext } from "./authProvider";
-import { NetworkContext } from "./networkProvider";
-
-const log = getLogger("RoadProvider");
+import { AuthContext } from "./AuthProvider";
+import { NetworkContext } from "./NetworkProviderr";
 
 type SaveRoadFn = (road: RoadProps) => Promise<any>;
 
@@ -81,7 +72,6 @@ const reducer: (state: RoadsState, action: ActionProps) => RoadsState = (
   state,
   { type, payload }
 ) => {
-  console.log(type);
   switch (type) {
     case FETCH_ROADS_STARTED:
       return { ...state, fetching: true, fetchingError: null };
@@ -136,8 +126,6 @@ const reducer: (state: RoadsState, action: ActionProps) => RoadsState = (
           if (road.id! > biggestId) biggestId = road.id!;
         }
       );
-      console.log(biggestId);
-
       localRoad.id = biggestId;
       localRoad.createdOnFrontend = true;
       return {
@@ -167,7 +155,7 @@ interface RoadProviderProps {
   children: PropTypes.ReactNodeLike;
 }
 
-export const RoadProvider: React.FC<RoadProviderProps> = ({ children }) => {
+export const EntitiesProvider: React.FC<RoadProviderProps> = ({ children }) => {
   const { authToken } = useContext(AuthContext);
 
   const { networkStatus } = useContext(NetworkContext);
@@ -299,7 +287,7 @@ export const RoadProvider: React.FC<RoadProviderProps> = ({ children }) => {
         }
       }, authToken);
       return () => {
-        console.log("Closign");
+        console.log("Closing");
         canceled = true;
         ws.close();
       };

@@ -15,8 +15,7 @@ import {
   IonRow,
   IonText,
 } from "@ionic/react";
-import { getLogger } from "../core";
-import { RoadContext } from "../providers/roadProvider";
+import { RoadContext } from "../providers/EntitiesProvider";
 import { RouteComponentProps, useHistory } from "react-router";
 import { RoadProps } from "../components/RoadProps";
 import { usePhotoGallery } from "../utils/usePhotoGallery";

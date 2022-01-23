@@ -3,16 +3,14 @@ import {
   IonCard,
   IonCardContent,
   IonCardHeader,
-  IonContent,
   IonInput,
   IonItem,
   IonLabel,
-  IonPage,
   IonText,
 } from "@ionic/react";
 import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router";
-import { AuthContext } from "../providers/authProvider";
+import { AuthContext } from "../providers/AuthProvider";
 
 interface Props {}
 
@@ -20,7 +18,7 @@ const Login = (props: Props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { authToken, login, retrieveingToken } = useContext(AuthContext);
+  const { authToken, login, retrievingToken } = useContext(AuthContext);
   const history = useHistory();
 
   useEffect(() => {
@@ -29,47 +27,41 @@ const Login = (props: Props) => {
     }
   }, [authToken]);
 
-  if (retrieveingToken) {
-    return (
-      <>
-        <IonText>Attempting Authentication</IonText>
-      </>
-    );
+  if (retrievingToken) {
+    return <IonText>Attempting Authentication</IonText>;
   }
 
   return (
-    <>
-      <IonCard>
-        <IonCardHeader>Login</IonCardHeader>
-        <IonCardContent>
-          <IonItem>
-            <IonLabel position="floating">Email</IonLabel>
-            <IonInput
-              value={email}
-              onIonChange={(e) => {
-                setEmail(e.detail.value!);
-              }}
-            />
-          </IonItem>
-          <IonItem>
-            <IonLabel position="floating">Password</IonLabel>
-            <IonInput
-              value={password}
-              onIonChange={(e) => {
-                setPassword(e.detail.value!);
-              }}
-            />
-          </IonItem>
-          <IonButton
-            onClick={() => {
-              login!(email, password);
+    <IonCard>
+      <IonCardHeader>Login</IonCardHeader>
+      <IonCardContent>
+        <IonItem>
+          <IonLabel position="floating">Email</IonLabel>
+          <IonInput
+            value={email}
+            onIonChange={(e) => {
+              setEmail(e.detail.value!);
             }}
-          >
-            Login
-          </IonButton>
-        </IonCardContent>
-      </IonCard>
-    </>
+          />
+        </IonItem>
+        <IonItem>
+          <IonLabel position="floating">Password</IonLabel>
+          <IonInput
+            value={password}
+            onIonChange={(e) => {
+              setPassword(e.detail.value!);
+            }}
+          />
+        </IonItem>
+        <IonButton
+          onClick={() => {
+            login!(email, password);
+          }}
+        >
+          Login
+        </IonButton>
+      </IonCardContent>
+    </IonCard>
   );
 };
 

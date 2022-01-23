@@ -22,9 +22,9 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
-import { AuthProvider } from "./providers/authProvider";
+import { AuthProvider } from "./providers/AuthProvider";
 import Setup from "./Setup";
-import NetworkProvider from "./providers/networkProvider";
+import NetworkProvider from "./providers/NetworkProviderr";
 
 const App: React.FC = () => (
   <IonApp>

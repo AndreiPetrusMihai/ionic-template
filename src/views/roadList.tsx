@@ -9,8 +9,6 @@ import {
   IonContent,
   IonFab,
   IonFabButton,
-  IonGrid,
-  IonHeader,
   IonIcon,
   IonInfiniteScroll,
   IonInfiniteScrollContent,
@@ -19,18 +17,12 @@ import {
   IonLabel,
   IonList,
   IonLoading,
-  IonPage,
   IonRow,
-  IonText,
-  IonTitle,
 } from "@ionic/react";
 import { add } from "ionicons/icons";
 import Road from "../components/road";
-import { getLogger } from "../core";
-import { RoadContext } from "../providers/roadProvider";
-import { NetworkContext } from "../providers/networkProvider";
-
-const log = getLogger("RoadList");
+import { RoadContext } from "../providers/EntitiesProvider";
+import { NetworkContext } from "../providers/NetworkProviderr";
 
 const RoadList: React.FC<RouteComponentProps> = ({ history }) => {
   const {
@@ -39,7 +31,6 @@ const RoadList: React.FC<RouteComponentProps> = ({ history }) => {
     fetching,
     fetchingError,
     onlyOperational,
-    sName,
     page,
     setPage,
     setOnlyOperational,

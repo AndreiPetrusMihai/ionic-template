@@ -1,0 +1,59 @@
+{
+  "name": "myApp",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "@capacitor/camera": "^1.2.0",
+    "@capacitor/core": "2.4.1",
+    "@capacitor/filesystem": "^1.0.6",
+    "@capacitor/geolocation": "^1.2.0",
+    "@capacitor/network": "^1.0.6",
+    "@capacitor/storage": "^1.2.3",
+    "@ionic/pwa-elements": "^3.0.2",
+    "@ionic/react": "^5.8.5",
+    "@ionic/react-router": "^5.8.5",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.4.0",
+    "@testing-library/user-event": "^8.0.3",
+    "@types/jest": "^24.0.25",
+    "@types/node": "^12.20.36",
+    "@types/react": "^16.14.20",
+    "@types/react-dom": "^16.9.14",
+    "@types/react-router": "^5.1.17",
+    "@types/react-router-dom": "^5.3.2",
+    "axios": "^0.20.0",
+    "ionicons": "^5.5.3",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "react-google-maps": "^9.4.5",
+    "react-router": "^5.2.1",
+    "react-router-dom": "^5.3.0",
+    "react-scripts": "3.4.0",
+    "typescript": "3.8.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@capacitor/cli": "2.4.1"
+  },
+  "description": "An Ionic project"
+}

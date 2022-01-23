@@ -26,8 +26,8 @@ export interface RoadsState {
   onlyOperational: boolean;
   saveRoad?: SaveRoadFn;
   setOnlyOperational?: Function;
-  setSName?: Function;
-  setPage?: Function;
+  // setSName?: Function; 4-FS
+  // setPage?: Function; 5-PAG
 }
 
 interface ActionProps {
@@ -175,17 +175,20 @@ export const EntitiesProvider: React.FC<RoadProviderProps> = ({ children }) => {
     savingError,
   } = state;
 
-  const setOnlyOperational = (onlyOperational: boolean) => {
-    dispatch({ type: SET_ONLY_OPERATIONAL, payload: onlyOperational });
-  };
+  // 4-FS
+  // const setOnlyOperational = (onlyOperational: boolean) => {
+  //   dispatch({ type: SET_ONLY_OPERATIONAL, payload: onlyOperational });
+  // };
 
-  const setSName = (sName: string) => {
-    dispatch({ type: SET_S_NAME, payload: sName });
-  };
+  // 4-FS
+  // const setSName = (sName: string) => {
+  //   dispatch({ type: SET_S_NAME, payload: sName });
+  // };
 
-  const setPage = (setPage: number) => {
-    dispatch({ type: SET_PAGE, payload: setPage });
-  };
+  // 5-PAG
+  // const setPage = (setPage: number) => {
+  //   dispatch({ type: SET_PAGE, payload: setPage });
+  // };
 
   useEffect(getRoadsEffect, [authToken, page, sName, onlyOperational]);
   useEffect(wsEffect, [authToken, networkStatus]);
@@ -212,7 +215,6 @@ export const EntitiesProvider: React.FC<RoadProviderProps> = ({ children }) => {
     page,
     more,
     sName,
-    onlyOperational,
     roads,
     localSavedRoads,
     fetching,
@@ -220,9 +222,10 @@ export const EntitiesProvider: React.FC<RoadProviderProps> = ({ children }) => {
     saving,
     savingError,
     saveRoad: saveRoad,
-    setOnlyOperational,
-    setSName,
-    setPage,
+    onlyOperational,
+    //setOnlyOperational, 4-FS
+    // setSName, 4-FS
+    // setPage, 5-PAG
   };
 
   return <RoadContext.Provider value={value}>{children}</RoadContext.Provider>;

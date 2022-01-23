@@ -35,10 +35,12 @@ const RoadEdit: React.FC<RoadEditProps> = ({ match }) => {
   const [lanes, setLanes] = useState(0);
   const [lastMaintained, setLastMaintained] = useState<Date | null>(null);
   const [isOperational, setIsOperational] = useState(false);
-  const [base64Photo, setBase64Photo] = useState<string | null>(null);
-  const { takePhoto, uploadPhoto, savePicture } = usePhotoGallery();
-  const [lat, setLat] = useState<number | undefined>();
-  const [long, setLong] = useState<number | undefined>();
+
+  // const [base64Photo, setBase64Photo] = useState<string | null>(null); 2-PHOTO
+  // const { takePhoto, uploadPhoto, savePicture } = usePhotoGallery();
+
+  // const [lat, setLat] = useState<number | undefined>(); 1-MAP
+  // const [long, setLong] = useState<number | undefined>();
 
   const [road, setRoad] = useState<RoadProps>();
   const routeId = match.params.id || "";
@@ -52,32 +54,32 @@ const RoadEdit: React.FC<RoadEditProps> = ({ match }) => {
     if (correspondingRoad) {
       setName(correspondingRoad.name);
       setLanes(correspondingRoad.lanes || 0);
-      setBase64Photo(correspondingRoad.base64Photo || null);
+      //setBase64Photo(correspondingRoad.base64Photo || null);2-PHOTO
       setLastMaintained(
         new Date(correspondingRoad.lastMaintained as any as string) || null
       );
       setIsOperational(correspondingRoad.isOperational || false);
-      setLat(correspondingRoad.lat);
-      setLong(correspondingRoad.long);
+      // setLat(correspondingRoad.lat); 1-MAP
+      // setLong(correspondingRoad.long);
     }
   }, [correspondingRoad?.id, correspondingRoad?.version]);
 
-  const savePictureToDevice = () => {
-    console.log({ base64Data: base64Photo, routeId });
-    savePicture(base64Photo!, routeId || "");
-  };
+  // const savePictureToDevice = () => { 2-PHOTO
+  //   console.log({ base64Data: base64Photo, routeId });
+  //   savePicture(base64Photo!, routeId || "");
+  // };
 
-  const takePhotoForItem = () => {
-    takePhoto().then((photo) => {
-      if (photo.base64String) setBase64Photo(photo.base64String);
-    });
-  };
+  // const takePhotoForItem = () => {
+  //   takePhoto().then((photo) => {
+  //     if (photo.base64String) setBase64Photo(photo.base64String);
+  //   });
+  // };
 
-  const uploadPhotoForItem = () => {
-    uploadPhoto().then((photo) => {
-      if (photo.base64String) setBase64Photo(photo.base64String);
-    });
-  };
+  // const uploadPhotoForItem = () => {
+  //   uploadPhoto().then((photo) => {
+  //     if (photo.base64String) setBase64Photo(photo.base64String);
+  //   });
+  // };
 
   const handleSave = () => {
     const editedRoad = road
@@ -86,27 +88,27 @@ const RoadEdit: React.FC<RoadEditProps> = ({ match }) => {
           name,
           lanes,
           isOperational,
-          base64Photo: base64Photo || undefined,
-          lat,
-          long,
+          // base64Photo: base64Photo || undefined, 2-PHOTO
+          // lat, 1-MAP
+          // long,
         }
       : {
           name,
           lanes,
           isOperational,
-          base64Photo: base64Photo || undefined,
-          lat,
-          long,
+          // base64Photo: base64Photo || undefined, 2-PHOTO
+          // lat, 1-MAP
+          // long,
         };
     saveRoad && saveRoad(editedRoad).then(() => history.push("/roads"));
   };
 
-  const onMapClick = (ev: any) => {
-    setLat(ev.latLng.lat());
-    setLong(ev.latLng.lng());
-    console.log("latitide = ", ev.latLng.lat());
-    console.log("longitude = ", ev.latLng.lng());
-  };
+  // const onMapClick = (ev: any) => { 1-MAP
+  //   setLat(ev.latLng.lat());
+  //   setLong(ev.latLng.lng());
+  //   console.log("latitide = ", ev.latLng.lat());
+  //   console.log("longitude = ", ev.latLng.lng());
+  // };
 
   const exitAnimation = (baseEl: any) => {
     const fadeAnimation = createAnimation()
@@ -177,7 +179,7 @@ const RoadEdit: React.FC<RoadEditProps> = ({ match }) => {
           </IonButtons>
         </IonRow>
 
-        <IonRow>
+        {/* <IonRow> 2-PHOTO
           <IonButtons>
             <IonButton onClick={takePhotoForItem}>Take Photo</IonButton>
           </IonButtons>
@@ -200,14 +202,14 @@ const RoadEdit: React.FC<RoadEditProps> = ({ match }) => {
 
         {base64Photo && (
           <IonImg src={"data:image/jpeg;base64," + base64Photo} />
-        )}
+        )} */}
 
         <IonLoading isOpen={saving} leaveAnimation={exitAnimation} />
         {savingError && (
           <div>{savingError.message || "Failed to save road"}</div>
         )}
       </IonCard>
-      <IonCard>
+      {/* <IonCard> 1-MAP
         <IonRow>
           <IonText>Lat: {lat?.toFixed(2) || "-"}</IonText>
         </IonRow>
@@ -235,7 +237,7 @@ const RoadEdit: React.FC<RoadEditProps> = ({ match }) => {
           containerElement={<div style={{ height: `400px` }} />}
           mapElement={<div style={{ height: `100%` }} />}
         />
-      </IonCard>
+      </IonCard> */}
     </IonContent>
   );
 };

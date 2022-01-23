@@ -30,16 +30,16 @@ const RoadList: React.FC<RouteComponentProps> = ({ history }) => {
     localSavedRoads,
     fetching,
     fetchingError,
-    onlyOperational,
-    page,
-    setPage,
-    setOnlyOperational,
-    setSName,
+    // setPage, 5-PAG
+    //page,
+    //setSName, 4-FS
+    // onlyOperational,
+    // setOnlyOperational,
     more,
   } = useContext(RoadContext);
   const evRef = useRef<any>(null);
 
-  const [searchName, setSearchName] = useState("");
+  //const [searchName, setSearchName] = useState(""); 4-FS
   const { networkStatus } = useContext(NetworkContext);
   useEffect(() => {
     if (evRef.current && !fetching) {
@@ -50,14 +50,14 @@ const RoadList: React.FC<RouteComponentProps> = ({ history }) => {
 
   const loadMoreData = (ev: any) => {
     evRef.current = ev.target;
-    if (more) {
-      setPage && setPage(page + 1);
-    }
+    // if (more) { 5-PAG
+    //   setPage && setPage(page + 1);
+    // }
   };
 
   return (
     <IonContent>
-      {networkStatus.connected && (
+      {/* {networkStatus.connected && ( 4-FS
         <IonCard>
           <IonCardContent>
             <IonRow
@@ -99,7 +99,7 @@ const RoadList: React.FC<RouteComponentProps> = ({ history }) => {
             </IonItem>
           </IonCardContent>
         </IonCard>
-      )}
+      )} */}
 
       <IonCard>
         <IonLoading isOpen={fetching} message="Fetching roads" />
@@ -129,14 +129,14 @@ const RoadList: React.FC<RouteComponentProps> = ({ history }) => {
         {fetchingError && (
           <div>{fetchingError.message || "Failed to fetch roads"}</div>
         )}
-        {networkStatus.connected && more && (
+        {/* {networkStatus.connected && more && ( 5-PAG
           <IonInfiniteScroll onIonInfinite={loadMoreData} threshold="100px">
             <IonInfiniteScrollContent
               loadingSpinner="bubbles"
               loadingText="Loading more data..."
             ></IonInfiniteScrollContent>
           </IonInfiniteScroll>
-        )}
+        )} */}
       </IonCard>
       <IonFab vertical="bottom" horizontal="end" slot="fixed">
         <IonFabButton onClick={() => history.push("/road")}>

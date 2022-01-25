@@ -5,7 +5,7 @@ import { Route, Redirect } from "react-router";
 import { RoadList, RoadEdit } from "./components";
 import GuardedRoute from "./components/GuardedRoute";
 import Header from "./components/Header";
-import { AuthContext } from "./providers/AuthProvider";
+import { AuthContext } from "./providers/authProvider";
 import { EntitiesProvider } from "./providers/EntitiesProvider";
 import Login from "./views/Login";
 

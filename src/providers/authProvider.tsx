@@ -5,7 +5,7 @@ import { Plugins } from "@capacitor/core";
 import { AxiosResponse } from "axios";
 
 const { Storage } = Plugins;
-type AuthProviderProps = {};
+type authProviderProps = {};
 
 type AuthState = {
   authToken: string | null;
@@ -21,7 +21,7 @@ const initialState: AuthState = {
 
 export const AuthContext = React.createContext<AuthState>(initialState);
 
-export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
+export const AuthProvider: React.FC<authProviderProps> = ({ children }) => {
   const [authToken, setAuthToken] = useState<string | null>(null);
   const [retrievingToken, setRetrievingToken] = useState(false);
 

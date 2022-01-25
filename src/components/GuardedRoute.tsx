@@ -1,6 +1,6 @@
 import React, { ReactChild, ReactFragment, useContext, useEffect } from "react";
 import { Route, RouteComponentProps, useHistory } from "react-router";
-import { AuthContext } from "../providers/AuthProvider";
+import { AuthContext } from "../providers/authProvider";
 
 interface Props {
   component:

@@ -22,7 +22,7 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
-import { AuthProvider } from "./providers/AuthProvider";
+import { AuthProvider } from "./providers/authProvider";
 import Setup from "./Setup";
 import NetworkProvider from "./providers/NetworkProviderr";
 

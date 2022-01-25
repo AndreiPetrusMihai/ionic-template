@@ -8,7 +8,7 @@ import {
   updateRoad,
   uploadLocalRoads,
 } from "../api/roadApi";
-import { AuthContext } from "./AuthProvider";
+import { AuthContext } from "./authProvider";
 import { NetworkContext } from "./NetworkProviderr";
 
 type SaveRoadFn = (road: RoadProps) => Promise<any>;

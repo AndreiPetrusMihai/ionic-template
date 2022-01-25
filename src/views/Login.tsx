@@ -10,7 +10,7 @@ import {
 } from "@ionic/react";
 import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router";
-import { AuthContext } from "../providers/AuthProvider";
+import { AuthContext } from "../providers/authProvider";
 
 interface Props {}
 
